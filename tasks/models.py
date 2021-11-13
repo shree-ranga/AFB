@@ -27,7 +27,7 @@ class Task(TrackingModel):
     )
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=500, blank=True)
-    due_date = models.DateField(blank=True)
+    due_date = models.DateField(null=True)
     labels = models.CharField(max_length=30, blank=True)
     priority = models.CharField(max_length=6, choices=PRIORITY_CHOICES, blank=True)
     completed = models.CharField(max_length=3, choices=COMPLETED_CHOICES, default="N")
