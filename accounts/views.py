@@ -8,11 +8,7 @@ from accounts.serializers import RegisterSerializer, LoginSerializer
 
 
 class RegisterAPI(APIView):
-    """
-    New user registration.
-    """
-
-    permissions = [AllowAny]
+    permission_classes = [AllowAny]
 
     def post(self, *args, **kwargs):
         data = self.request.data

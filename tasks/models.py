@@ -1,8 +1,12 @@
 from django.db import models
 from django.conf import settings
 
-# abstract tracking model
+
 class TrackingModel(models.Model):
+    """
+    Abstract base model
+    """
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -12,6 +16,10 @@ class TrackingModel(models.Model):
 
 # task model
 class Task(TrackingModel):
+    """
+    Task model
+    """
+
     PRIORITY_CHOICES = [("H", "High"), ("M", "Medium"), ("L", "Low")]
     COMPLETED_CHOICES = [("Y", "Yes"), ("N", "No")]
     user = models.ForeignKey(
@@ -25,14 +33,9 @@ class Task(TrackingModel):
     completed = models.CharField(max_length=3, choices=COMPLETED_CHOICES, default="N")
 
     class Meta:
-        """
-        Default ordering is reverse chronological order.
-        """
-
+        # default ordering is reverse chronological order
         ordering = ("-created_at",)
 
     def __str__(self):
-        """
-        String representation of the task by its title.
-        """
+        # String representation of the task by its title.
         return f"Task - {self.title}"
