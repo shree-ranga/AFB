@@ -25,7 +25,7 @@ class TaskSerializer(serializers.ModelSerializer):
         read_only_fields = ["id"]
 
     def validate(self, attrs):
-        if (attrs["due_date"] is not None) and (
+        if ("due_date" in attrs) and (
             attrs["due_date"] < datetime.datetime.now().date()
         ):
             raise serializers.ValidationError(
