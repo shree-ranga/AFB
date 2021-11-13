@@ -20,15 +20,15 @@ class Task(TrackingModel):
     Task model
     """
 
-    PRIORITY_CHOICES = [("H", "High"), ("M", "Medium"), ("L", "Low")]
-    COMPLETED_CHOICES = [("Y", "Yes"), ("N", "No")]
+    PRIORITY_CHOICES = [("1", "High"), ("2", "Medium"), ("3", "Low")]
+    COMPLETED_CHOICES = [("1", "Yes"), ("0", "No")]
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name="tasks", on_delete=models.CASCADE
     )
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=500, blank=True)
     due_date = models.DateField(null=True)
-    labels = models.CharField(max_length=30, blank=True)
+    label = models.CharField(max_length=30, blank=True)
     priority = models.CharField(max_length=6, choices=PRIORITY_CHOICES, blank=True)
     completed = models.CharField(max_length=3, choices=COMPLETED_CHOICES, default="N")
 
