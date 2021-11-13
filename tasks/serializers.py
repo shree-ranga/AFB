@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
@@ -21,3 +23,12 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = "__all__"
         read_only_fields = ["id"]
+
+    def validate(self, attrs):
+        if (attrs["due_date"] is not None) and (
+            attrs["due_date"] < datetime.datetime.now().date()
+        ):
+            raise serializers.ValidationError(
+                "due date must be greater than today's date"
+            )
+        return attrs
