@@ -37,6 +37,6 @@ class LoginSerializer(serializers.Serializer):
         user = authenticate(username=username, password=password)
         if user is not None:
             token, created = Token.objects.get_or_create(user=user)
-            return token
+            return token.key
         else:
             raise ValidationError("Incorrect username/password.")

@@ -40,7 +40,7 @@ class TestSetup(APITestCase):
 
         self.list_user_task_url = reverse("user_tasks_list")
         self.list_user_task_priority_ordering_url = (
-            "http://127.0.0.1:8000/tasks/list/?ordering=priority"
+            self.list_user_task_url + "?ordering=priority"
         )
 
         return super().setUp()
