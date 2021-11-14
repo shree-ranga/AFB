@@ -6,6 +6,7 @@ from rest_framework import generics, status
 from rest_framework.filters import OrderingFilter
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from accounts.serializers import User
 
 from tasks.permissions import IsOwner
 from tasks.serializers import Task, TaskSerializer
@@ -61,7 +62,7 @@ class TaskUpdateDeleteAPI(APIView):
         instance = self.get_object()
         serializer = TaskSerializer(instance, data=data, partial=True)
         serializer.is_valid(raise_exception=True)
-        serializer.save(user=self.request.user)
+        serializer.save()
         return Response(status=status.HTTP_201_CREATED)
 
     def delete(self, *args, **kwargs):

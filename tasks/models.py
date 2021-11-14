@@ -20,8 +20,8 @@ class Task(TrackingModel):
     Task model
     """
 
-    PRIORITY_CHOICES = [("1", "High"), ("2", "Medium"), ("3", "Low")]
-    COMPLETED_CHOICES = [("1", "Yes"), ("0", "No")]
+    PRIORITY_CHOICES = [(1, "High"), (2, "Medium"), (3, "Low")]
+    COMPLETED_CHOICES = [(1, "Yes"), (0, "No")]
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, related_name="tasks", on_delete=models.CASCADE
     )
@@ -30,7 +30,7 @@ class Task(TrackingModel):
     due_date = models.DateField(null=True)  # date in YYYY-MM-DD format
     label = models.CharField(max_length=30, blank=True)
     priority = models.CharField(max_length=6, choices=PRIORITY_CHOICES, blank=True)
-    completed = models.CharField(max_length=3, choices=COMPLETED_CHOICES, default="N")
+    completed = models.CharField(max_length=3, choices=COMPLETED_CHOICES, default=0)
 
     class Meta:
         # default ordering is reverse chronological order
