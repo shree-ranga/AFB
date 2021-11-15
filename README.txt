@@ -1,15 +1,15 @@
-1. CD to AFB path from CLI.
+1. CD to the current folder path from CLI.
 
 2. Assuming Python 3 and venv are installed, create a virtual environment with the following bash command
     "python3 -m venv venv"
 
-3. Run the following command tpo activate the virtual environment
+3. Run the following command to activate the virtual environment
     "source venv/bin/activate"
 
-4. Install the necessary python packages with the following bash command
+4. Install the necessary python packages with the following command
     "pip install -r requirements.txt"
 
-5. Create migrations with the following commands
+5. Create migrations with the following commands.
     "python manage.py makemigrations"
     "python manage.py migrate"
 
